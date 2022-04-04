@@ -1,0 +1,13 @@
+= Daikon Release Notes (6.5.1) - 04/04/2022
+
+Thanks to @dependabot[bot], @Colm O hEigeartaigh, @Fabien Abballe
+
+== Fix
+- link:https://jira.talendforge.org/browse/TDKN-337[TDKN-337]: Update to SpringBoot 2.6.6 (link:https://github.com/Talend/daikon/pull/833[#833])
+
+== Work Item
+- link:https://jira.talendforge.org/browse/TDKN-336[TDKN-336]: Update Atlassian JIRA client to 5.2.x (link:https://github.com/Talend/daikon/pull/830[#830])
+- link:https://jira.talendforge.org/browse/TDKN-335[TDKN-335]: Switch to Junit5 (link:https://github.com/Talend/daikon/pull/829[#829])
+
+== Other
+- chore(deps): bump spring-webmvc  (link:https://github.com/Talend/daikon/pull/834[#834])
