@@ -169,12 +169,26 @@ public class DSELVisitor implements IASTVisitor<ELNode> {
 
     @Override
     public ELNode visit(FieldCompliesPattern elt) {
-        throw new TqlException("Needs implementation : visit(FieldCompliesPattern elt)");
+        LOGGER.debug("Inside Visit FieldCompliesPattern " + elt.toString());
+        final TqlElement ex = elt.getField();
+
+        ELNode fieldCompliesNode = new ELNode(ELNodeType.FUNCTION_CALL, "complies");
+        fieldCompliesNode.addChild(ex.accept(this));
+        fieldCompliesNode.addChild(new ELNode(ELNodeType.STRING_LITERAL, elt.getPattern()));
+
+        return fieldCompliesNode;
     }
 
     @Override
     public ELNode visit(FieldWordCompliesPattern elt) {
-        throw new TqlException("Needs implementation : visit(FieldWordCompliesPattern elt)");
+        LOGGER.debug("Inside Visit FieldWordCompliesPattern " + elt.toString());
+        final TqlElement ex = elt.getField();
+
+        ELNode fieldWordCompliesNode = new ELNode(ELNodeType.FUNCTION_CALL, "wordComplies");
+        fieldWordCompliesNode.addChild(ex.accept(this));
+        fieldWordCompliesNode.addChild(new ELNode(ELNodeType.STRING_LITERAL, elt.getPattern()));
+
+        return fieldWordCompliesNode;
     }
 
     @Override
