@@ -1,5 +1,9 @@
 package org.talend.daikon.pattern.character;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
 
 import javax.script.ScriptEngine;
@@ -7,10 +11,6 @@ import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CharPatternToRegexTest {
 

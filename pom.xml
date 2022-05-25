@@ -88,6 +88,7 @@
         <json-schema-validator.version>1.0.64</json-schema-validator.version>
         <maven.enforcer.plugin.version>3.0.0</maven.enforcer.plugin.version>
         <junit-pioneer.version>1.6.2</junit-pioneer.version>
+        <graalvm.js.version>22.1.0.1</graalvm.js.version>
     </properties>
     <modules>
         <module>daikon</module>
@@ -174,6 +175,24 @@
     </distributionManagement>
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.graalvm.js</groupId>
+                <artifactId>js</artifactId>
+                <version>${graalvm.js.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.graalvm.js</groupId>
+                <artifactId>js-scriptengine</artifactId>
+                <version>${graalvm.js.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.graalvm.truffle</groupId>
+                <artifactId>truffle-api</artifactId>
+                <version>${graalvm.js.version}</version>
+                <scope>test</scope>
+            </dependency>
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
