@@ -20,6 +20,7 @@ import org.springframework.util.StringUtils;
 import org.talend.daikon.spring.reactive.sat.authentication.Auth0ReactiveAuthenticationManager;
 import org.talend.daikon.spring.reactive.sat.authentication.Auth0ReactiveAuthenticationProvider;
 import org.talend.daikon.spring.reactive.sat.authentication.TalendJwtConverter;
+import org.talend.daikon.spring.reactive.sat.introspection.AuthUserDetailsConverterIntrospector;
 
 import lombok.Getter;
 import reactor.core.publisher.Mono;
@@ -68,11 +69,12 @@ public class ReactiveAuthenticationManagerFactory {
 
     private ReactiveAuthenticationManager opaqueReactiveAuthenticationManager(OAuth2ResourceServerProperties oauth2Properties) {
         if (StringUtils.hasText(oauth2Properties.getOpaquetoken().getIntrospectionUri())) {
+            NimbusReactiveOpaqueTokenIntrospector nimbusReactiveOpaqueTokenIntrospector = new NimbusReactiveOpaqueTokenIntrospector(
+                    oauth2Properties.getOpaquetoken().getIntrospectionUri(),
+                    Optional.ofNullable(oauth2Properties.getOpaquetoken().getClientId()).orElse(""),
+                    Optional.ofNullable(oauth2Properties.getOpaquetoken().getClientSecret()).orElse(""));
             return new OpaqueTokenReactiveAuthenticationManager(
-                    new NimbusReactiveOpaqueTokenIntrospector(oauth2Properties.getOpaquetoken().getIntrospectionUri(),
-                            Optional.ofNullable(oauth2Properties.getOpaquetoken().getClientId()).orElse(""),
-                            Optional.ofNullable(oauth2Properties.getOpaquetoken().getClientSecret()).orElse("")));
-
+                    new AuthUserDetailsConverterIntrospector(nimbusReactiveOpaqueTokenIntrospector));
         }
         LOGGER.debug(
                 "spring.security.oauth2.resourceserver.opaque-token.introspection-uri has no value: no opaque token authentication will be available");
